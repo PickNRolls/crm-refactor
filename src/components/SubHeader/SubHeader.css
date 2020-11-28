@@ -1,0 +1,33 @@
+.SubHeader {
+  height: 80px;
+}
+
+.SubHeader__AddButton {
+  margin-right: 20px;
+}
+
+.SubHeader__Toggle .Button {
+  width: 60px;
+  padding: 0;
+  padding-top: 3px;
+}
+
+.SubHeader__Search {
+  width: 280px;
+}
+
+.SubHeader__Search .Textinput__Control {
+  padding-left: 40px;
+}
+
+.SubHeader__SearchSvg {
+  position: absolute;
+  height: 20px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.SubHeader__Search .Textinput__Placeholder {
+  left: 40px;
+}

@@ -1,0 +1,17 @@
+.AppHeader {
+  width: 100%;
+  height: 80px;
+}
+
+.AppHeader__container {
+  display: flex;
+  align-items: center;
+}
+
+.AppHeader__Logo {
+  margin-right: 30px;
+}
+
+.AppHeader__Nav {
+  margin: 0 auto;
+}

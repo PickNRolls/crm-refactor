@@ -1,0 +1,47 @@
+.Button {
+  --button_view_default-background: #F9F9FB;
+  --button_view_default-color: #606060;
+
+  --button_view_action-background: var(--color-accept);
+  --button_view_action-color: #fff;
+
+  --button_view_active-background: #fff;
+  --button_view_active-color: var(--color-accent);
+
+  height: 40px;
+  font-family: var(--font-family);
+  outline: none;
+  padding: 0 32px;
+  font-size: var(--font-size-default);
+  border: 1px solid #F1F1F1;
+  border-radius: 30px;
+}
+
+.Button_view_default {
+  background: var(--button_view_default-background);
+  color: var(--button_view_default-color);
+}
+
+.Button_view_action {
+  background: var(--button_view_action-background);
+  color: var(--button_view_action-color);
+}
+
+.Button_view_active {
+  background: var(--button_view_active-background);
+  color: var(--button_view_active-color);
+}
+
+.Button_pin_brick-brick {
+  border-radius: 0;
+}
+
+.Button_pin_round-brick {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.Button_pin_brick-round {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

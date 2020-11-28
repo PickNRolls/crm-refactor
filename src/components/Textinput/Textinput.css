@@ -1,0 +1,50 @@
+.Textinput {
+  --textinput-height: 40px;
+  --textinput-border: 1px solid #F1F1F1;
+  --textinput-border-radius: 20px;
+  --textinput-placeholder-color: #9d9d9d;
+  --textinput-placeholder-raised-font-size: 12px;
+
+  height: var(--textinput-height);
+  border: var(--textinput-border);
+  border-radius: var(--textinput-border-radius);
+  position: relative;
+  cursor: text;
+}
+
+.Textinput__Control {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  border-radius: var(--textinput-border-radius);
+  font-size: var(--font-size-default);
+  padding-left: 20px;
+}
+
+.Textinput__Control::placeholder {
+  color: var(--textinput-placeholder-color);
+}
+
+.Textinput__Placeholder {
+  display: inline-flex;
+  align-items: center;
+  color: var(--textinput-placeholder-color);
+  position: absolute;
+  top: 0;
+  left: 20px;
+  transform: translateY(55%);
+  transition: all .2s ease;
+  opacity: 0;
+}
+
+.Textinput__Placeholder_visible {
+  opacity: 1;
+}
+
+.Textinput__Placeholder_raised {
+  transform: translate(-5px, -6px);
+  font-size: var(--textinput-placeholder-raised-font-size);
+  background: #fff;
+  padding: 0 4px;
+}

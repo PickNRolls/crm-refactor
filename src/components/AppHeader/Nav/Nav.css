@@ -1,0 +1,13 @@
+.Nav {
+  --font-size: 18px;
+
+  font-size: var(--font-size);
+}
+
+.Nav__NavItem {
+  margin-right: 40px;
+}
+
+.Nav .Nav__NavItem:last-child {
+  margin-right: 0;
+}

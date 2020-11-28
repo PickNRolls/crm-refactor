@@ -1,0 +1,42 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+body {
+  --font-family: Lato, Roboto, sans-serif;
+  --font-size-default: 16px;
+
+  --color-default: #000;
+  --color-accent: #01A9FC;
+  --color-accept: linear-gradient(265.68deg, #39FA90 3.38%, #19D191 96.62%);
+
+
+  font-family: var(--font-family);
+  font-size: var(--font-size-default);
+  color: var(--color-default);
+}
+
+.container {
+  max-width: 1410px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.container.flex {
+  display: flex;
+  align-items: center;
+}
+
+svg {
+  fill: currentColor;
+}

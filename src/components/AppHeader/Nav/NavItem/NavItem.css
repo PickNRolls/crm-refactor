@@ -1,0 +1,10 @@
+.NavItem {
+  color: var(--color-default);
+  padding-bottom: 26px;
+  border-bottom: 3px solid transparent;
+}
+
+.NavItem_active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}

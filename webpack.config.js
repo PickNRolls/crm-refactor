@@ -5,6 +5,9 @@ module.exports = {
   entry: path.resolve(__dirname, 'src/index.tsx'),
   mode: 'development',
   devtool: 'inline-source-map',
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
@@ -40,7 +43,8 @@ module.exports = {
     }),
   ],
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
-  }
+  },
 };

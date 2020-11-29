@@ -1,0 +1,14 @@
+.Tab {
+    height: 60px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    background: #fbfbfb;
+    color: var(--color-accent);
+}
+
+.Tab_active {
+    color: var(--color-default);
+    background: #fff;
+}

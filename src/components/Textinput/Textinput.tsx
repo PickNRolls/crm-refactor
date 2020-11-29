@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ComponentType, FC, useCallback, useRef } from 'react';
+import React, { ChangeEvent, ComponentType, CSSProperties, FC, useCallback, useRef } from 'react';
 import cn from 'classnames';
 import { TextinputInnerProps, TextinputOuterProps } from './Textinput.types';
 import onClickOutside from 'react-onclickoutside';
@@ -13,17 +13,19 @@ const Textinput: FC<TextinputInnerProps> & OutsideClickInjection = props => {
   const {
     placeholder,
     prepend = null,
-    className,
     value,
     name,
     onChange,
     onFocus,
     onBlur,
-    onOutsideClick
+    onOutsideClick,
+    radius,
   } = props;
   const controlRef = useRef<HTMLInputElement>();
 
-  Textinput.handleClickOutside = () => onOutsideClick();
+  Textinput.handleClickOutside = () => {
+    onOutsideClick();
+  }
 
   const handleClick = useCallback(() => {
     controlRef.current.focus();
@@ -38,12 +40,16 @@ const Textinput: FC<TextinputInnerProps> & OutsideClickInjection = props => {
     }
   }, [onChange]);
 
+  const className = cn('Textinput', props.className);
+  const style: CSSProperties = {
+    borderRadius: `${radius}px`,
+  };
+
   return (
-    <div className={cn('Textinput', className)} onClick={handleClick}>
+    <div className={className} style={style} onClick={handleClick}>
       {prepend}
       <input
         type="text"
-        key={name}
         name={name}
         className="Textinput__Control"
         placeholder={placeholder}

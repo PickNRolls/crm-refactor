@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { TextinputInnerProps, TextinputOuterProps } from '../Textinput.types';
 
 export const withPlaceholderAnimation = (Textinput: ComponentType<TextinputInnerProps>) => (props: TextinputOuterProps) => {
-  const { prepend = null, animate, placeholder, onFocus, onOutsideClick, value } = props;
+  const { prepend = null, animate, placeholder, onFocus, onOutsideClick, value = '' } = props;
   const forwardProps = { ...props };
   delete forwardProps.animate;
 
@@ -28,7 +28,7 @@ export const withPlaceholderAnimation = (Textinput: ComponentType<TextinputInner
     if (onOutsideClick) {
       onOutsideClick();
     }
-  }, [onOutsideClick, value]);
+  }, [setRaised, setVisible, onOutsideClick, value]);
 
   let prependAddon: React.ReactNode = prepend;
   if (animate && animate.placeholder) {

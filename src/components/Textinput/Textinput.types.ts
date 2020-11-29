@@ -13,6 +13,7 @@ export interface TextinputOuterProps {
   onFocus?: () => void;
   onBlur?: () => void;
   onOutsideClick?: () => void;
+  radius?: number;
 }
 
 export type TextinputInnerProps = Omit<TextinputOuterProps, 'animate'>;

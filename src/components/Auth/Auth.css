@@ -1,7 +1,21 @@
 .Auth {
+    width: 338px;
     border: 1px solid #eaeaea;
     border-radius: 20px;
     box-shadow: 0px 20px 90px 0px rgba(0, 0, 0, 0.1);
+}
+
+.Auth__Tabs {
+    background: #fff;
+    border-radius: 20px;
+}
+
+.Auth__Tabs .Tab {
+    border: 1px solid transparent;
+}
+
+.Auth__Tabs .Tab:not(.Tab_active) {
+    border-color: #f7f7f7;
 }
 
 .Auth__Tabs .Tab:first-child {

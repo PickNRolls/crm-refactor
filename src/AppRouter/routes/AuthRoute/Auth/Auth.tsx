@@ -4,7 +4,7 @@ import { AuthProps } from './Auth.types';
 
 const LocalAuth: FC<AuthProps> = (props) => {
     return (
-        <Auth />
+        <Auth {...props} />
     );
 };
 

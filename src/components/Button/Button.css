@@ -25,6 +25,7 @@
 .Button_view_action {
   background: var(--button_view_action-background);
   color: var(--button_view_action-color);
+  border: none;
 }
 
 .Button_view_active {
@@ -44,4 +45,8 @@
 .Button_pin_brick-round {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.Button_block {
+  width: 100%;
 }

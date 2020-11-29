@@ -5,3 +5,11 @@
 .SignUp__Textinput {
     margin-bottom: 15px;
 }
+
+.SignUp__Inputs {
+    margin-bottom: 30px;
+}
+
+.SignUp__Inputs .SignUp__Textinput:last-child {
+    margin-bottom: 0;
+}

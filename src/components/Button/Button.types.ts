@@ -6,5 +6,6 @@ export interface ButtonProps {
   className?: string;
   view?: ButtonView;
   pin?: ButtonPin;
+  block?: boolean;
   onClick?: (event: React.MouseEvent) => void;
 }

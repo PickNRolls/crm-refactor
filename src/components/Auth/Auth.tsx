@@ -1,4 +1,5 @@
 import React, { FC, useCallback, useState } from 'react';
+import cx from 'classnames';
 import { AuthProps, TabState } from './Auth.types';
 import Tabs from './Tabs';
 import { Option, Content } from 'components/Tabs';
@@ -29,8 +30,10 @@ const Auth: FC<AuthProps> = (props) => {
     setTab(value);
   }, [setTab]);
 
+  const className = cx('Auth', props.className);
+
   return (
-    <div className="Auth">
+    <div className={className}>
       <Tabs
         className="Auth__Tabs"
         options={options}

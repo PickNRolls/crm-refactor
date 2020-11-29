@@ -12,6 +12,13 @@ button {
   cursor: pointer;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
 body {
   --font-family: Lato, Roboto, sans-serif;
   --font-size-default: 16px;
@@ -19,7 +26,6 @@ body {
   --color-default: #000;
   --color-accent: #01A9FC;
   --color-accept: linear-gradient(265.68deg, #39FA90 3.38%, #19D191 96.62%);
-
 
   font-family: var(--font-family);
   font-size: var(--font-size-default);

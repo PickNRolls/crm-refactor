@@ -1,11 +1,12 @@
 import React, { CSSProperties, FC } from 'react';
 import cx from 'classnames';
 import Label from './Label';
+import Error from './Error';
 import { TextinputProps } from './Textinput.types';
 import './Textinput.css';
 
 const Textinput: FC<TextinputProps> = (props) => {
-  const { radius = 5, label, name, placeholder, value = '', onChange } = props;
+  const { radius = 5, label, name, placeholder, value = '', onChange, type = 'text', error } = props;
 
   const className = cx('Textinput', props.className);
   const style: CSSProperties = {
@@ -18,21 +19,24 @@ const Textinput: FC<TextinputProps> = (props) => {
   return (
     <div className={className} style={style}>
       {label && (
-        <Label className="Textinput-Label" name={name}>
+        <Label className="Textinput__Label" name={name}>
           {label}
         </Label>
       )}
-      <div className="Textinput-Box">
+      <div className="Textinput__Box">
         <input
           value={value}
           onChange={onChange}
-          className="Textinput-Control"
+          className="Textinput__Control"
           style={controlStyle}
-          type="text"
+          type={type}
           name={name}
           placeholder={placeholder}
         />
       </div>
+      {error && (
+        <Error className="Textinput__Error">{error}</Error>
+      )}
     </div>
   );
 };

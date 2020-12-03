@@ -18,17 +18,19 @@ const options: Option[] = [
   },
 ];
 
-const content: Content = {
-  signIn: <SignIn />,
-  signUp: <SignUp />,
-};
-
 const Auth: FC<AuthProps> = (props) => {
+  const { onSignUp } = props;
+
   const [tab, setTab] = useState<TabState>('signUp');
 
   const handleChange = useCallback((value: TabState) => {
     setTab(value);
   }, [setTab]);
+
+  const content: Content = {
+    signIn: <SignIn />,
+    signUp: <SignUp onSubmit={onSignUp} />,
+  };
 
   const className = cx('Auth', props.className);
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { AnimateConfig } from 'components/Textinput/Textinput.types';
 import { Option } from 'components/Toggle/Toggle.types';
 import CompactSvg from './compact.react.svg';
 import GridSvg from './grid.react.svg';
@@ -20,6 +19,6 @@ export const TOGGLE_OPTIONS: Option[] = [
   }
 ];
 
-export const SEARCH_ANIMATE_CONFIG: AnimateConfig = {
+export const SEARCH_ANIMATE_CONFIG = {
   placeholder: true,
 };

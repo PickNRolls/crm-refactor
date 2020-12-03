@@ -7,5 +7,6 @@ export interface ButtonProps {
   view?: ButtonView;
   pin?: ButtonPin;
   block?: boolean;
+  type?: 'button' | 'submit';
   onClick?: (event: React.MouseEvent) => void;
 }

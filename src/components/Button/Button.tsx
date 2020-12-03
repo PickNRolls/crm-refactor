@@ -5,7 +5,7 @@ import { getPinMod, getViewMod, getBlockMod } from './Button.utils';
 import './Button.css';
 
 const Button: FC<ButtonProps> = props => {
-  const { onClick, view = 'default', pin, block } = props;
+  const { onClick, view = 'default', pin, block, type = 'button' } = props;
 
   const className = cn('Button', props.className, {
     ...getViewMod(view),
@@ -20,7 +20,7 @@ const Button: FC<ButtonProps> = props => {
   }, [onClick]);
 
   return (
-    <button className={className} onClick={handleClick}>
+    <button className={className} onClick={handleClick} type={type}>
       {props.children}
     </button>
   );

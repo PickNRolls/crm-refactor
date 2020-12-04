@@ -26,6 +26,7 @@
     "css-loader": "^5.0.0",
     "file-loader": "^6.1.1",
     "html-webpack-plugin": "^4.5.0",
+    "husky": "^5.0.4",
     "jest": "^26.6.3",
     "react-svg-loader": "^3.0.3",
     "style-loader": "^2.0.0",
@@ -46,5 +47,10 @@
     "react-final-form": "^6.5.2",
     "react-onclickoutside": "^6.9.0",
     "react-router-dom": "^5.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }

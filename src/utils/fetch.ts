@@ -23,14 +23,14 @@ const getInitObject = (payload: FetchPayload): RequestInit => {
     return initObject;
 };
 
-export const fetch = function<RT>(url: string, payload: FetchPayload): Promise<RT> {
+export const fetch = function<TRes extends {}>(url: string, payload: FetchPayload): Promise<TRes> {
     return window.fetch(`${apiHost}${url}`, getInitObject(payload))
         .then((response) => {
-            return response.json().then(data => {
+            return response.json().then((data: TRes) => {
                 if (response.ok) {
                     return data;
                 } else {
-                    return Promise.reject({ status: response.status, data });
+                    return Promise.reject(data);
                 }
             });
         })

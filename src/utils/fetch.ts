@@ -13,7 +13,9 @@ const getInitObject = (payload: FetchPayload): RequestInit => {
     };
 
     if (payload.data) {
-        initObject.body = JSON.stringify(payload.data);
+        initObject.body = JSON.stringify({
+            data: payload.data,
+        });
     }
 
     if (payload.method) {
@@ -26,16 +28,16 @@ const getInitObject = (payload: FetchPayload): RequestInit => {
 export const fetch = function<TRes extends {}>(url: string, payload: FetchPayload): Promise<TRes> {
     return window.fetch(`${apiHost}${url}`, getInitObject(payload))
         .then((response) => {
-            return response.json().then((data: TRes) => {
+            return response.json().then((res: TRes) => {
                 if (response.ok) {
-                    return data;
+                    return res;
                 } else {
-                    return Promise.reject(data);
+                    return Promise.reject(res);
                 }
             });
         })
-        .catch((error) => {
-            console.error(error);
-            throw error;
+        .catch((res) => {
+            console.error(res);
+            throw res;
         });
 };

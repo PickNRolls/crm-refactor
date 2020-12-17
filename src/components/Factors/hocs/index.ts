@@ -1,3 +1,4 @@
 import { withOverlay } from './withOverlay';
+import { withCopyButtons } from './withCopyButtons';
 
-export { withOverlay };
+export { withOverlay, withCopyButtons };

@@ -18,11 +18,14 @@ const Factor: FC<FactorProps> = props => {
     }, [onClick, id]);
 
     return (
-        <button className={className} onClick={handleClick}>
-            <div className="Factor__name">
-                {props.name}
-            </div>
-        </button>
+        <div className={className}>
+            <button className="Factor__button" onClick={handleClick}>
+                <div className="Factor__name">
+                    {props.name}
+                </div>
+            </button>
+            {props.append}
+        </div>
     );
 };
 

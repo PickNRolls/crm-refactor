@@ -1,8 +1,16 @@
-import React, { FC, useCallback, useState } from 'react';
-import PureFactors, { Factor, Group, Category, FactorClickHandler, useDraftSave, withOverlay } from 'components/Factors';
+import React, { FC, useState } from 'react';
+import PureFactors, {
+    Factor,
+    Group,
+    Category,
+    FactorClickHandler,
+    useDraftSave,
+    withOverlay,
+    withCopyButtons,
+} from 'components/Factors';
 import { FactorsProps, MoveFactor } from './Factors.types';
 
-const Factors = withOverlay(PureFactors);
+const Factors = withCopyButtons(withOverlay(PureFactors));
 
 type NormalizedGroup = Omit<Group, 'categories'> & {
     categoryIds: string[];
@@ -94,7 +102,7 @@ const IssueFactors: FC<FactorsProps> = props => {
         return group;
     })
 
-    const moveFactor = useCallback<MoveFactor>((source, dest) => {
+    const moveFactor: MoveFactor = (source, dest) => {
         const { factorId, categoryId } = source;
         const destCategoryId = dest.categoryId;
         
@@ -114,12 +122,12 @@ const IssueFactors: FC<FactorsProps> = props => {
             },
         });
         
-    }, [setCategoryMap, categoryFactorMoveMap, categoryMap]);  
+    };  
 
-    const handleFactorClick = useCallback<FactorClickHandler>(async (value) => {
+    const handleFactorClick: FactorClickHandler = async (value) => {
         const response = await saveDraft(value);
         console.log(response);
-    }, []);  
+    };
 
     return (
         <>

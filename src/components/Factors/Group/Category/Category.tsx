@@ -2,6 +2,8 @@ import React, { FC, useCallback } from 'react';
 import Factor from './Factor';
 import { CategoryProps } from './Category.types';
 import './Category.css';
+import { RenderFactor } from 'components/Factors/Factors.types';
+import { useRenderProp } from 'hooks/useRenderProp';
 
 const Category: FC<CategoryProps> = props => {
     const { id, onFactorClick } = props;
@@ -17,6 +19,10 @@ const Category: FC<CategoryProps> = props => {
         });
     }, [onFactorClick, id]);
 
+    const FactorRender = useRenderProp<RenderFactor>((renderProps) => (
+        <Factor {...renderProps} />
+    ), props.renderFactor);
+
     return (
         <div className="Category">
             <div className="Category__title">
@@ -24,10 +30,12 @@ const Category: FC<CategoryProps> = props => {
             </div>
             <div className="Category__factors">
                 {props.factors.map((factor) => (
-                    <Factor
+                    <FactorRender
                         key={factor.id}
-                        name={factor.name}
                         id={factor.id}
+                        name={factor.name}
+                        active={factor.active}
+                        disabled={factor.disabled}
                         onClick={handleFactorClick}
                     />
                 ))}

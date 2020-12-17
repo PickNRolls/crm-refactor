@@ -1,4 +1,6 @@
-import { Factor } from "components/Factors/Factors.types";
+import { RenderFactor } from 'components/Factors/Factors.types';
+import { Factor } from 'components/Factors/types';
+import { RenderProp } from 'hooks/useRenderProp';
 
 export interface CategoryProps {
     id: string;
@@ -9,4 +11,6 @@ export interface CategoryProps {
         categoryId: string;
         factorId: string;
     }) => void;
+
+    renderFactor?: RenderProp<RenderFactor>;
 }

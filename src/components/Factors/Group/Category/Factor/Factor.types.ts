@@ -4,5 +4,7 @@ export interface FactorProps {
     active?: boolean;
     disabled?: boolean;
 
+    append?: React.ReactNode;
+
     onClick?: (id: string) => void;
 }

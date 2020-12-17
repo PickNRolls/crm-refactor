@@ -1,0 +1,17 @@
+.Overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, .6);
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease .2s;
+    transition-property: opacity, visibility;
+}
+
+.Overlay_visible {
+    visibility: visible;
+    opacity: 1;
+}

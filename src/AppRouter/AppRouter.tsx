@@ -4,6 +4,7 @@ import { history } from 'browserHistory';
 import AppHeader from 'components/AppHeader';
 import SubHeader from 'components/SubHeader';
 import { AuthRoute, RootRoute } from './routes';
+import Factors from './Factors';
 
 const AppRouter: FC = () => {
   return (
@@ -12,6 +13,8 @@ const AppRouter: FC = () => {
         <Route exact path="/" component={RootRoute} />
         <Route path="/auth" component={AuthRoute} />
       </Switch>
+
+      <Factors />
     </Router>
   );
 };

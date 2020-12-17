@@ -1,0 +1,12 @@
+.Factor {
+    border: 1px solid #000;
+}
+
+.Factor_active {
+    background: #000;
+    color: #fff;
+}
+
+.Factor_disabled {
+    background: #aeaeae;
+}

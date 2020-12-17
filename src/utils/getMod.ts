@@ -1,5 +1,5 @@
-export const getMod = (blockOrElemName: string, modName: string, value?: string): Record<string, boolean> => {
-  if (value == null) {
+export const getMod = (blockOrElemName: string, modName: string, value?: string | boolean): Record<string, boolean> => {
+  if (value === true) {
     return {
       [`${blockOrElemName}_${modName}`]: true,
     };

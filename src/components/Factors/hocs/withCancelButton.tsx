@@ -1,9 +1,16 @@
 import React, { ComponentType, FC } from 'react';
 import { createRender, RenderChain } from 'utils/render/createRender';
+import { Group } from '../types';
 
 interface CanInnerAppend {
     innerAppend?: React.ReactNode;
 }
+
+interface NeedsFactorGroups {
+    factorGroups?: Group[];
+}
+
+type WCProps = CanInnerAppend & NeedsFactorGroups;
 
 type WithCancelButtonProps<P extends {}> = P & {
     renderCancelButton?: RenderChain<CancelButtonProps>;
@@ -16,9 +23,9 @@ interface CancelButtonProps {
     disabled?: boolean;
 }
 
-const withCancelButton = <P extends CanInnerAppend>(WC: ComponentType<P>): ComponentType<WithCancelButtonProps<P>> => {
+const withCancelButton = <P extends WCProps>(WC: ComponentType<P>): ComponentType<WithCancelButtonProps<P>> => {
     const ComponentWithCancel: FC<WithCancelButtonProps<P>> = props => {
-        const { canCancel, onCancel, innerAppend } = props;
+        const { factorGroups, canCancel, onCancel, innerAppend } = props;
 
         const CancelButtonRender = createRender<CancelButtonProps>((renderProps) => (
             <button disabled={renderProps.disabled} onClick={renderProps.onClick}>
@@ -26,9 +33,11 @@ const withCancelButton = <P extends CanInnerAppend>(WC: ComponentType<P>): Compo
             </button>
         ), props.renderCancelButton);
 
+        const hasFactorGroups = Boolean(Array.isArray(factorGroups) && factorGroups.length);
+
         const appendContent = (
             <>
-                {canCancel && (
+                {canCancel && hasFactorGroups && (
                     <CancelButtonRender onClick={onCancel}>
                         cancel
                     </CancelButtonRender>

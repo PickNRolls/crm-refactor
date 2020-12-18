@@ -17,7 +17,7 @@ export type RenderGroup = FC<GroupProps>;
 export type RenderCategory = FC<CategoryProps>;
 export type RenderFactor = FC<FactorProps>;
 export interface FactorsProps {
-    factorGroups: Group[];
+    factorGroups?: Group[];
 
     onFactorClick?: FactorClickHandler;
 

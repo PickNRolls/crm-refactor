@@ -6,6 +6,8 @@ import { createRender } from 'utils/render/createRender';
 import { GroupProps } from './Group/Group.types';
 
 const Factors: FC<FactorsProps> = props => {
+    const { factorGroups } = props;
+
     const GroupRender = createRender<GroupProps>((renderProps) => {
         return (
             <Group
@@ -20,20 +22,32 @@ const Factors: FC<FactorsProps> = props => {
         );
     }, props.renderGroup);
 
+    const hasGroups = Boolean(Array.isArray(factorGroups) && factorGroups.length);
+
     return (
         <div className="Factors">
-            {props.factorGroups.map((group) => (
-                <GroupRender
-                    key={group.id}
-                    id={group.id}
-                    title={group.title}
-                    categories={group.categories}
-                    className="Factors__group"
-                    onFactorClick={props.onFactorClick}
-                    renderCategory={props.renderCategory}
-                    renderFactor={props.renderFactor}
-                />
-            ))}
+            {hasGroups ?
+                (
+                    <div className="Factors__groups">
+                        {factorGroups.map((group) => (
+                            <GroupRender
+                                key={group.id}
+                                id={group.id}
+                                title={group.title}
+                                categories={group.categories}
+                                className="Factors__group"
+                                onFactorClick={props.onFactorClick}
+                                renderCategory={props.renderCategory}
+                                renderFactor={props.renderFactor}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="Factors__noContent"> 
+                        No factors
+                    </div>
+                )
+            }
             {props.innerAppend}
         </div>
     );

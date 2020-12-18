@@ -8,10 +8,18 @@ import PureFactors, {
     withCopyButtons,
     withSaveButton,
     withCancelButton,
+    withMountLoad,
 } from 'components/Factors';
 import { FactorsProps } from './Factors.types';
 
-const Factors = withCopyButtons(withOverlay(withCancelButton(withSaveButton(PureFactors))));
+const Factors =
+    withMountLoad(
+    withCopyButtons(
+    withOverlay(
+    withCancelButton(
+    withSaveButton(
+        PureFactors
+    )))));
 
 type NormalizedGroup = Omit<Group, 'categories'> & {
     categoryIds: string[];
@@ -134,9 +142,17 @@ const IssueFactors: FC<FactorsProps> = props => {
         );
     };
 
+    const handleMountLoad = (): Promise<Group[]> => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(groups)
+            }, 3000);
+        });
+    };
+
     return (
         <Factors
-            factorGroups={groups}
+            onMountLoad={handleMountLoad}
             onFactorClick={handleFactorClick}
 
             canSave

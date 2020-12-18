@@ -1,6 +1,7 @@
-import { RenderProp } from 'hooks/useRenderProp';
-import { RenderCategory, RenderFactor } from '../Factors.types';
+import { RenderChain } from 'utils/render/createRender';
 import { Category } from '../types';
+import { CategoryProps } from './Category/Category.types';
+import { FactorProps } from './Category/Factor/Factor.types';
 
 export interface GroupProps {
     title: string;
@@ -13,8 +14,8 @@ export interface GroupProps {
         factorId: string;
     }) => void;
 
-    renderCategory?:  RenderProp<RenderCategory>;
-    renderFactor?: RenderProp<RenderFactor>;
+    renderCategory?:  RenderChain<CategoryProps>;
+    renderFactor?: RenderChain<FactorProps>;
 
     className?: string;
 }

@@ -3,6 +3,7 @@ import { withCopyButtons } from './withCopyButtons';
 import { withSaveButton } from './withSaveButton';
 import { withCancelButton } from './withCancelButton';
 import { withMountLoad } from './withMountLoad';
+import { withSelfContent } from './withSelfContent';
 
 export {
     withOverlay,
@@ -10,4 +11,5 @@ export {
     withSaveButton,
     withCancelButton,
     withMountLoad,
+    withSelfContent,
 };

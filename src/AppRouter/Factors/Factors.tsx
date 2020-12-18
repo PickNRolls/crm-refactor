@@ -10,6 +10,7 @@ import PureFactors, {
     withCancelButton,
     withMountLoad,
     withSelfContent,
+    withNoContentTooltip,
 } from 'components/Factors';
 import { FactorsProps } from './Factors.types';
 
@@ -20,8 +21,9 @@ const Factors =
     withCancelButton(
     withSaveButton(
     withSelfContent(
+    withNoContentTooltip(
         PureFactors
-    ))))));
+    )))))));
 
 type NormalizedGroup = Omit<Group, 'categories'> & {
     categoryIds: string[];

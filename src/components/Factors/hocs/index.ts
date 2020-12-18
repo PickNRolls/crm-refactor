@@ -4,6 +4,7 @@ import { withSaveButton } from './withSaveButton';
 import { withCancelButton } from './withCancelButton';
 import { withMountLoad } from './withMountLoad';
 import { withSelfContent } from './withSelfContent';
+import { withNoContentTooltip } from './withNoContentTooltip';
 
 export {
     withOverlay,
@@ -12,4 +13,5 @@ export {
     withCancelButton,
     withMountLoad,
     withSelfContent,
+    withNoContentTooltip,
 };

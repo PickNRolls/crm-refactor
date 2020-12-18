@@ -22,32 +22,22 @@ const Factors: FC<FactorsProps> = props => {
         );
     }, props.renderGroup);
 
-    const hasGroups = Boolean(Array.isArray(factorGroups) && factorGroups.length);
-
     return (
         <div className="Factors">
-            {hasGroups ?
-                (
-                    <div className="Factors__groups">
-                        {factorGroups.map((group) => (
-                            <GroupRender
-                                key={group.id}
-                                id={group.id}
-                                title={group.title}
-                                categories={group.categories}
-                                className="Factors__group"
-                                onFactorClick={props.onFactorClick}
-                                renderCategory={props.renderCategory}
-                                renderFactor={props.renderFactor}
-                            />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="Factors__noContent"> 
-                        No factors
-                    </div>
-                )
-            }
+            <div className="Factors__groups">
+                {factorGroups.map((group) => (
+                    <GroupRender
+                        key={group.id}
+                        id={group.id}
+                        title={group.title}
+                        categories={group.categories}
+                        className="Factors__group"
+                        onFactorClick={props.onFactorClick}
+                        renderCategory={props.renderCategory}
+                        renderFactor={props.renderFactor}
+                    />
+                ))}
+            </div>
             {props.innerAppend}
         </div>
     );

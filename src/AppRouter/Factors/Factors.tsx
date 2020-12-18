@@ -8,9 +8,11 @@ import PureFactors, {
     withOverlay,
     withCopyButtons,
 } from 'components/Factors';
+import { compose } from 'utils/compose';
 import { FactorsProps, MoveFactor } from './Factors.types';
+import { withSaveButton } from 'components/Factors/hocs/withSaveButton';
 
-const Factors = withCopyButtons(withOverlay(PureFactors));
+const Factors = withOverlay(withSaveButton(PureFactors));
 
 type NormalizedGroup = Omit<Group, 'categories'> & {
     categoryIds: string[];
@@ -100,40 +102,24 @@ const IssueFactors: FC<FactorsProps> = props => {
         };
 
         return group;
-    })
+    });
 
-    const moveFactor: MoveFactor = (source, dest) => {
-        const { factorId, categoryId } = source;
-        const destCategoryId = dest.categoryId;
-        
-        if (!destCategoryId) {
-            return;
-        }
+    const [isSaving, setIsSaving] = useState<boolean>(false);
 
-        setCategoryMap({
-            ...categoryMap,
-            [categoryId]: {
-                ...categoryMap[categoryId],
-                factorIds: categoryMap[categoryId].factorIds.filter((fId) => fId !== factorId),
-            },
-            [destCategoryId]: {
-                ...categoryMap[destCategoryId],
-                factorIds: categoryMap[destCategoryId].factorIds.concat(factorId),
-            },
-        });
-        
-    };  
-
-    const handleFactorClick: FactorClickHandler = async (value) => {
-        const response = await saveDraft(value);
-        console.log(response);
+    const handleFactorsSave = () => {
+        setIsSaving(true);
+        setTimeout(() => {
+            setIsSaving(false);
+        }, 1000);
     };
 
     return (
         <>
             <Factors
                 factorGroups={groups}
-                onFactorClick={handleFactorClick}
+                isOverlayVisible={isSaving}
+                canSave
+                onSave={handleFactorsSave}
             />
         </>
     );

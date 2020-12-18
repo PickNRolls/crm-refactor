@@ -4,7 +4,8 @@ export interface FactorProps {
     active?: boolean;
     disabled?: boolean;
 
-    append?: React.ReactNode;
+    innerAppend?: React.ReactNode;
+    innerRef?: React.RefObject<HTMLDivElement>;
 
     onClick?: (id: string) => void;
 }

@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import Group from './Group';
-import { FactorsProps, RenderGroup } from './Factors.types';
+import { FactorsProps } from './Factors.types';
 import './Factors.css';
-import { useRenderProp } from 'hooks/useRenderProp';
+import { createRender } from 'utils/render/createRender';
+import { GroupProps } from './Group/Group.types';
 
 const Factors: FC<FactorsProps> = props => {
-    const GroupRender = useRenderProp<RenderGroup>((renderProps) => {
+    const GroupRender = createRender<GroupProps>((renderProps) => {
         return (
             <Group
                 id={renderProps.id}
@@ -33,7 +34,7 @@ const Factors: FC<FactorsProps> = props => {
                     renderFactor={props.renderFactor}
                 />
             ))}
-            {props.append}
+            {props.innerAppend}
         </div>
     );
 };

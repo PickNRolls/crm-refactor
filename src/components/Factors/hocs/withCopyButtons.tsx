@@ -1,23 +1,29 @@
 import React, { ComponentType, FC } from 'react';
-import { RenderProp, useRenderProp } from 'hooks/useRenderProp';
-import { RenderFactor } from '../Factors.types';
+import { connectRender } from 'utils/render/connectRender';
+import { RenderChain, RenderFunction } from 'utils/render/createRender';
+import { FactorProps } from '../Group/Category/Factor/Factor.types';
 
 interface CanRenderFactor {
-    renderFactor?: RenderProp<RenderFactor>;
+    renderFactor?: RenderChain<RenderFunction<FactorProps>, FactorProps>;
 }
 
 const withCopyButtons = <P extends CanRenderFactor>(WC: ComponentType<P>): ComponentType<P> => {
     const ComponentWithCopyButtons: FC<P> = props => {
-        const renderFactor: RenderProp<RenderFactor> = (defaultRender) => (renderProps) => {
-            return defaultRender({
+        const renderCopyButton: CanRenderFactor['renderFactor'] = (parentRender) => (renderProps) => {
+            return parentRender({
                 ...renderProps,
-                append: (
-                    <button onClick={() => console.log(renderProps.id)}>
-                        copy
-                    </button>
+                innerAppend: (
+                    <>
+                        <button onClick={() => console.log(renderProps.id)}>
+                            copy
+                        </button>
+                        {renderProps.innerAppend}
+                    </>
                 ),
             });
         };
+
+        const renderFactor = connectRender(renderCopyButton, props.renderFactor);
 
         return <WC {...props} renderFactor={renderFactor} />
     };

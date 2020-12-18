@@ -1,14 +1,14 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import Factor from './Factor';
 import { CategoryProps } from './Category.types';
+import { createRender } from 'utils/render/createRender';
+import { FactorProps } from './Factor/Factor.types';
 import './Category.css';
-import { RenderFactor } from 'components/Factors/Factors.types';
-import { useRenderProp } from 'hooks/useRenderProp';
 
 const Category: FC<CategoryProps> = props => {
     const { id, onFactorClick } = props;
 
-    const handleFactorClick = useCallback((factorId: string) => {
+    const handleFactorClick = (factorId: string) => {
         if (!onFactorClick) {
             return;
         }
@@ -17,9 +17,9 @@ const Category: FC<CategoryProps> = props => {
             categoryId: id,
             factorId,
         });
-    }, [onFactorClick, id]);
+    };
 
-    const FactorRender = useRenderProp<RenderFactor>((renderProps) => (
+    const FactorRender = createRender<FactorProps>((renderProps) => (
         <Factor {...renderProps} />
     ), props.renderFactor);
 

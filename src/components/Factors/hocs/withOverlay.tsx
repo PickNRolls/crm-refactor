@@ -1,26 +1,26 @@
 import React, { ComponentType, FC } from 'react';
 import Overlay from '../Overlay';
 
-interface CanAppend {
-    append?: React.ReactNode;
+interface CanInnerAppend {
+    innerAppend?: React.ReactNode;
 }
 
 type WithOverlayProps<P extends {}> = P & {
     isOverlayVisible?: boolean;
 };
 
-const withOverlay = <P extends CanAppend>(WC: ComponentType<P>): ComponentType<WithOverlayProps<P>> => {
+const withOverlay = <P extends CanInnerAppend>(WC: ComponentType<P>): ComponentType<WithOverlayProps<P>> => {
     const ComponentWithOverlay: FC<WithOverlayProps<P>> = props => {
-        const { isOverlayVisible, append } = props;
+        const { isOverlayVisible, innerAppend } = props;
 
         const appendContent = (
             <>
                 <Overlay visible={isOverlayVisible} />
-                {append}
+                {innerAppend}
             </>
         );
 
-        return <WC {...props} append={appendContent} />
+        return <WC {...props} innerAppend={appendContent} />
     };
 
     return ComponentWithOverlay;

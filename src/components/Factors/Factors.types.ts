@@ -1,5 +1,5 @@
-import { RenderProp } from 'hooks/useRenderProp';
 import { FC } from 'react';
+import { RenderChain } from 'utils/render/createRender';
 import { CategoryProps } from './Group/Category/Category.types';
 import { FactorProps } from './Group/Category/Factor/Factor.types';
 import { GroupProps } from './Group/Group.types';
@@ -21,9 +21,9 @@ export interface FactorsProps {
 
     onFactorClick?: FactorClickHandler;
 
-    renderGroup?: RenderProp<RenderGroup>;
-    renderCategory?: RenderProp<RenderCategory>;
-    renderFactor?: RenderProp<RenderFactor>;
+    renderGroup?: RenderChain<RenderGroup, GroupProps>;
+    renderCategory?: RenderChain<RenderCategory, CategoryProps>;
+    renderFactor?: RenderChain<RenderFactor, FactorProps>;
 
-    append?: React.ReactNode;
+    innerAppend?: React.ReactNode;
 }

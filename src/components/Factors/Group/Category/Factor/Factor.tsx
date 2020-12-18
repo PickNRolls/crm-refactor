@@ -11,11 +11,11 @@ const Factor: FC<FactorProps> = props => {
         Factor_disabled: props.disabled,
     });
 
-    const handleClick = useCallback(() => {
+    const handleClick = () => {
         if (onClick) {
             onClick(id);
         }
-    }, [onClick, id]);
+    };
 
     return (
         <div className={className}>
@@ -24,7 +24,7 @@ const Factor: FC<FactorProps> = props => {
                     {props.name}
                 </div>
             </button>
-            {props.append}
+            {props.innerAppend}
         </div>
     );
 };

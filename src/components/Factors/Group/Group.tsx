@@ -1,10 +1,10 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import Category from './Category';
 import { GroupProps } from './Group.types';
 import cx from 'classnames';
 import './Group.css';
-import { RenderCategory } from '../Factors.types';
-import { useRenderProp } from 'hooks/useRenderProp';
+import { createRender } from 'utils/render/createRender';
+import { CategoryProps } from './Category/Category.types';
 
 const Group: FC<GroupProps> = props => {
     const { onFactorClick, id } = props;
@@ -23,16 +23,15 @@ const Group: FC<GroupProps> = props => {
         });
     };
 
-    const CategoryRender = useRenderProp<RenderCategory>((renderProps) => (
+    const CategoryRender = createRender<CategoryProps>((renderProps) => (
         <Category
-            key={renderProps.id}
             id={renderProps.id}
             title={renderProps.title}
             factors={renderProps.factors}
             onFactorClick={renderProps.onFactorClick}
             renderFactor={renderProps.renderFactor}
         />
-    ), props.renderCategory)
+    ), props.renderCategory);
 
     return (
         <div className={className}>
@@ -48,8 +47,7 @@ const Group: FC<GroupProps> = props => {
                         factors={category.factors}
                         onFactorClick={handleFactorClick}
                         renderFactor={props.renderFactor}
-                    />
-                ))}
+                    />))}
             </div>
         </div>
     );

@@ -6,12 +6,12 @@ import PureFactors, {
     FactorClickHandler,
     withOverlay,
     withCopyButtons,
+    withSaveButton,
+    withCancelButton,
 } from 'components/Factors';
-import { compose } from 'utils/compose';
-import { FactorsProps, MoveFactor } from './Factors.types';
-import { withSaveButton } from 'components/Factors/hocs/withSaveButton';
+import { FactorsProps } from './Factors.types';
 
-const Factors = withCopyButtons(withOverlay(withSaveButton(PureFactors)));
+const Factors = withCopyButtons(withOverlay(withCancelButton(withSaveButton(PureFactors))));
 
 type NormalizedGroup = Omit<Group, 'categories'> & {
     categoryIds: string[];
@@ -107,6 +107,10 @@ const IssueFactors: FC<FactorsProps> = props => {
         }, 200);
     };
 
+    const handleFactorsCancel = () => {
+        console.log('cancel');
+    };
+
     const handleFactorsSave = () => {
         setIsSaving(true);
         setTimeout(() => {
@@ -131,16 +135,19 @@ const IssueFactors: FC<FactorsProps> = props => {
     };
 
     return (
-        <>
-            <Factors
-                factorGroups={groups}
-                isOverlayVisible={isLoading}
-                canSave
-                onSave={handleFactorsSave}
-                onFactorClick={handleFactorClick}
-                renderSaveButton={renderSaveButton}
-            />
-        </>
+        <Factors
+            factorGroups={groups}
+            onFactorClick={handleFactorClick}
+
+            canSave
+            renderSaveButton={renderSaveButton}
+            onSave={handleFactorsSave}
+
+            canCancel
+            onCancel={handleFactorsCancel}
+
+            isOverlayVisible={isLoading}
+        />
     );
 };
 

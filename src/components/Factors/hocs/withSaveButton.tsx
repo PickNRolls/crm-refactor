@@ -1,21 +1,38 @@
 import React, { ComponentType, FC } from 'react';
+import { createRender, RenderChain } from 'utils/render/createRender';
 
 interface CanInnerAppend {
     innerAppend?: React.ReactNode;
 }
 
 type WithSaveButtonProps<P extends {}> = P & {
+    renderSaveButton?: RenderChain<SaveButtonProps>;
     canSave?: boolean;
     onSave?: () => void;
 };
+
+interface SaveButtonProps {
+    onClick?: () => void;
+    disabled?: boolean;
+}
 
 const withSaveButton = <P extends CanInnerAppend>(WC: ComponentType<P>): ComponentType<WithSaveButtonProps<P>> => {
     const ComponentWithSave: FC<WithSaveButtonProps<P>> = props => {
         const { canSave, onSave, innerAppend } = props;
 
+        const SaveButtonRender = createRender<SaveButtonProps>((renderProps) => (
+            <button disabled={renderProps.disabled} onClick={renderProps.onClick}>
+                {renderProps.children}
+            </button>
+        ), props.renderSaveButton);
+
         const appendContent = (
             <>
-                {canSave && <button onClick={onSave}>save</button>}
+                {canSave && (
+                    <SaveButtonRender onClick={onSave}>
+                        save
+                    </SaveButtonRender>
+                )}
                 {innerAppend}
             </>
         );

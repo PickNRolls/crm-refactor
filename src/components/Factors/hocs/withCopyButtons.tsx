@@ -4,7 +4,7 @@ import { RenderChain, RenderFunction } from 'utils/render/createRender';
 import { FactorProps } from '../Group/Category/Factor/Factor.types';
 
 interface CanRenderFactor {
-    renderFactor?: RenderChain<RenderFunction<FactorProps>, FactorProps>;
+    renderFactor?: RenderChain<FactorProps>;
 }
 
 const withCopyButtons = <P extends CanRenderFactor>(WC: ComponentType<P>): ComponentType<P> => {

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import PureFactors, {
     Factor,
     Group,
@@ -104,7 +104,16 @@ const IssueFactors: FC<FactorsProps> = props => {
         return group;
     });
 
+    const [isDraftSaving, setIsDraftSaving] = useState<boolean>(false);
     const [isSaving, setIsSaving] = useState<boolean>(false);
+
+    const handleFactorClick: FactorClickHandler = (value) => {
+        console.log(value);
+        setIsDraftSaving(true);
+        setTimeout(() => {
+            setIsDraftSaving(false);
+        }, 200);
+    };
 
     const handleFactorsSave = () => {
         setIsSaving(true);
@@ -113,13 +122,31 @@ const IssueFactors: FC<FactorsProps> = props => {
         }, 1000);
     };
 
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    useEffect(() => {
+        setIsLoading(isSaving || isDraftSaving);
+    }, [isSaving, isDraftSaving]);
+
+    const renderSaveButton = (parentRender) => (renderProps) => {
+        return (
+            <>
+                {parentRender({
+                    ...renderProps,
+                    disabled: isLoading,
+                })}
+            </>
+        );
+    };
+
     return (
         <>
             <Factors
                 factorGroups={groups}
-                isOverlayVisible={isSaving}
+                isOverlayVisible={isLoading}
                 canSave
                 onSave={handleFactorsSave}
+                onFactorClick={handleFactorClick}
+                renderSaveButton={renderSaveButton}
             />
         </>
     );

@@ -21,9 +21,9 @@ export interface FactorsProps {
 
     onFactorClick?: FactorClickHandler;
 
-    renderGroup?: RenderChain<RenderGroup, GroupProps>;
-    renderCategory?: RenderChain<RenderCategory, CategoryProps>;
-    renderFactor?: RenderChain<RenderFactor, FactorProps>;
+    renderGroup?: RenderChain<GroupProps>;
+    renderCategory?: RenderChain<CategoryProps>;
+    renderFactor?: RenderChain<FactorProps>;
 
     innerAppend?: React.ReactNode;
 }

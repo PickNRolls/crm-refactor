@@ -4,7 +4,6 @@ import PureFactors, {
     Group,
     Category,
     FactorClickHandler,
-    useDraftSave,
     withOverlay,
     withCopyButtons,
 } from 'components/Factors';
@@ -12,7 +11,7 @@ import { compose } from 'utils/compose';
 import { FactorsProps, MoveFactor } from './Factors.types';
 import { withSaveButton } from 'components/Factors/hocs/withSaveButton';
 
-const Factors = withOverlay(withSaveButton(PureFactors));
+const Factors = withCopyButtons(withOverlay(withSaveButton(PureFactors)));
 
 type NormalizedGroup = Omit<Group, 'categories'> & {
     categoryIds: string[];
@@ -23,8 +22,6 @@ type NormalizedCategory = Omit<Category, 'factors'> & {
 };
 
 const IssueFactors: FC<FactorsProps> = props => {
-    const [saveDraft, isSaveDraftFetching] = useDraftSave();
-
     const [groupIds, setGroupIds] = useState<string[]>(['0', '1']);
     const [groupMap, setGroupMap] = useState<Record<string, NormalizedGroup>>({
         0: {
@@ -38,11 +35,6 @@ const IssueFactors: FC<FactorsProps> = props => {
             categoryIds: [],
         }
     });
-
-    const categoryFactorMoveMap: Record<string, string> = {
-        1: '0',
-        0: '1',
-    };
 
     const [categoryMap, setCategoryMap] = useState<Record<string, NormalizedCategory>>({
         0: {

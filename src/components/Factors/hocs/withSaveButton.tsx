@@ -1,6 +1,5 @@
 import React, { ComponentType, FC } from 'react';
 import { createRender, RenderChain } from 'utils/render/createRender';
-import { Group } from '../types';
 
 interface CanInnerAppend {
     innerAppend?: React.ReactNode;

@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import PureFactors, { Category, Factor, Group, withCancelButton, withCopyButtons, withMountLoad, withSaveButton, withSelfContent } from 'components/Factors';
+import { fetchIssueFactors } from 'AppRouter/routes/Factors/fetchIssueFactors';
 
 const Factors = withCopyButtons(withMountLoad(withCancelButton(withSaveButton(withSelfContent(PureFactors)))));
 
@@ -86,11 +87,10 @@ const IssueFactors: FC = (props) => {
         return group;
     });
 
-    const handleMountLoad = (): Promise<Group[]> => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(groups);
-            }, 3000);
+    const handleMountLoad = () => {
+        return fetchIssueFactors({
+            accountId: 123,
+            issueId: 321,
         });
     };
 

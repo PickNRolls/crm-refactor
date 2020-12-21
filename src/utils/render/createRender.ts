@@ -1,14 +1,20 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 
-export type RenderFunction<P extends {}> = FC<P>;
-export type RenderChain<P extends {}> = (parentRender: RenderFunction<P>) => RenderFunction<P>;
+export type RenderFunction<P extends {}> = (props: P) => ReactNode;
+export type NextRenderFunction<P extends {}> = (props: P) => ReactNode | ((prevRender: RenderFunction<P>) => ReactNode);
 
 export const createRender = <P extends {}>(
-    defaultRender: RenderFunction<P>,
-    propRender?: RenderChain<P>,
-): RenderFunction<P> => {
-    if (propRender) {
-      return (renderProps) => propRender(defaultRender)(renderProps);
+    render: RenderFunction<P>,
+    nextRender?: NextRenderFunction<P>,
+): FC<P> => {
+  return (renderProps: P) => {
+    if (nextRender) {
+      const result = nextRender(renderProps)
+      if (typeof result === 'function') {
+        return result(render);
+      }
+      return result;
     }
-    return defaultRender;
+    return render(renderProps);
+  };
 };

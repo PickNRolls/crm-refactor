@@ -88,10 +88,7 @@ const IssueFactors: FC = (props) => {
     });
 
     const handleMountLoad = () => {
-        return fetchIssueFactors({
-            accountId: 123,
-            issueId: 321,
-        });
+        return Promise.resolve(groups);
     };
 
     return (

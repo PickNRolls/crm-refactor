@@ -1,6 +1,6 @@
 import React, { ComponentType, FC } from 'react';
 import { connectRender } from 'utils/render/connectRender';
-import { RenderChain, RenderFunction } from 'utils/render/createRender';
+import { NextRenderFunction, RenderChain, RenderFunction } from 'utils/render/createRender';
 import { FactorProps } from '../Group/Category/Factor/Factor.types';
 
 interface CanRenderFactor {
@@ -9,13 +9,13 @@ interface CanRenderFactor {
 
 const withCopyButtons = <P extends CanRenderFactor>(WC: ComponentType<P>): ComponentType<P> => {
     const ComponentWithCopyButtons: FC<P> = props => {
-        const renderCopyButton: CanRenderFactor['renderFactor'] = (parentRender) => (renderProps) => {
-            return parentRender({
+        const renderCopyButton: NextRenderFunction<FactorProps> = (renderProps) => (prevRender) => {
+            return prevRender({
                 ...renderProps,
                 innerAppend: (
                     <>
                         <button onClick={() => console.log(renderProps.id)}>
-                            copy
+                            copy1
                         </button>
                         {renderProps.innerAppend}
                     </>
